@@ -84,3 +84,44 @@ Example:
     startHour:10,
     endHour:20
 })
+
+Methods
+Method	                Description
+getSelectedDate()	    Return selected date
+getSelectedSlot()	    Return selected time slot
+addBooking(date,time)	Add booked slot
+clearSelection()	    Clear selected date and time
+destroy()	            Destroy calendar instance
+
+Example:
+calendar.addBooking("2026-03-20","10:00");
+
+Project Structure
+Booking-Calendar
+│
+├── demo
+│   └── index.html
+│
+├── dist
+│   ├── booking-calendar.css
+│   ├── booking-calendar.js
+│   └── booking-calendar.min.js
+│
+├── src
+│   ├── css
+│   │   └── calendar.css
+│   └── js
+│       └── calendar.js
+│
+├── documentation
+│   └── index.html
+│
+├── README.md
+└── license.txt
+
+Browser Support
+Supports all modern browsers:
+-Chrome
+-Firefox
+-Safari
+-Edge
