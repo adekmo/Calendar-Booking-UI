@@ -4,7 +4,6 @@
   --millie-black: #242424;
   --millie-gray: #757575;
   --millie-bg-light: #F7F7F7;
-  --bc-primary: var(--millie-yellow);
 }
 
 .bc-theme-light {
@@ -26,19 +25,10 @@
   --bc-slot-bg: #242424;
   --bc-disabled: #2d2d2d;
   --bc-muted: #777;
-  --
-  
-  body {
-    background-color: var(--millie-bg-light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}bc-modal-bg: #242424;
+  --bc-modal-bg: #242424;
 }
 
-.booking-calendar {
+.booking-calendar-wrapper {
   max-width: 400px; /* Sedikit lebih lebar agar lega */
   width: 100%;
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;

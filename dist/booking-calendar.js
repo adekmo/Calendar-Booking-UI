@@ -196,11 +196,18 @@ class BookingCalendar {
             this.datesContainer.appendChild(empty);
         }
 
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
         for (let day = 1; day <= totalDays; day++) {
             const date = new Date(year, month, day);
             const dateElement = document.createElement("div");
             dateElement.classList.add("calendar-date");
             dateElement.innerText = day;
+
+            if (date < today) {
+                dateElement.classList.add("disabled");
+            }
 
             const formattedDate = this.formatDate(date);
 

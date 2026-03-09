@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Calendar Documentation</title>
+
+<style>
+body{
+font-family: Arial, Helvetica, sans-serif;
+margin:0;
+background:#f5f6fa;
+color:#333;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1{
+margin-bottom:5px;
+}
+
+.subtitle{
+color:#666;
+margin-bottom:30px;
+}
+
+.card{
+background:#fff;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+margin-bottom:25px;
+}
+
+h2{
+margin-top:0;
+border-bottom:1px solid #eee;
+padding-bottom:10px;
+}
+
+code{
+background:#eee;
+padding:3px 6px;
+border-radius:4px;
+}
+
+pre{
+background:#111;
+color:#00ff90;
+padding:15px;
+border-radius:6px;
+overflow:auto;
+}
+
+ul{
+line-height:1.8;
+}
+
+.footer{
+margin-top:40px;
+text-align:center;
+color:#777;
+font-size:14px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Booking Calendar Plugin</h1>
+<p class="subtitle">Lightweight JavaScript booking calendar with time slots.</p>
+
+<div class="card">
+<h2>Installation</h2>
+
+<p>Include the CSS and JavaScript files inside your project.</p>
+
+<pre>
+&lt;link rel="stylesheet" href="../dist/booking-calendar.css"&gt;
+&lt;script src="../dist/booking-calendar.js"&gt;&lt;/script&gt;
+</pre>
+
+<p>Add a container where the calendar will be rendered.</p>
+
+<pre>
+&lt;div id="calendar"&gt;&lt;/div&gt;
+</pre>
+
+</div>
+
+<div class="card">
+<h2>Basic Usage</h2>
+
+<pre>
+const calendar = new BookingCalendar("#calendar", {
+
+theme: "light",
+
+primaryColor: "#6366f1",
+
+startHour: 9,
+endHour: 17,
+
+bookedSlots: {
+"2026-03-12": ["09:00","10:30"]
+}
+
+});
+</pre>
+
+</div>
+
+<div class="card">
+<h2>Configuration Options</h2>
+
+<ul>
+<li><b>theme</b> — Calendar theme ("light" or "dark")</li>
+<li><b>primaryColor</b> — Main accent color</li>
+<li><b>startHour</b> — Start booking hour</li>
+<li><b>endHour</b> — End booking hour</li>
+<li><b>slotDuration</b> — Time slot interval (minutes)</li>
+<li><b>bookedSlots</b> — Predefined booked slots</li>
+</ul>
+
+<pre>
+new BookingCalendar("#calendar",{
+theme:"dark",
+primaryColor:"#22c55e"
+})
+</pre>
+
+</div>
+
+<div class="card">
+<h2>Methods</h2>
+
+<ul>
+<li><code>getSelectedDate()</code> → return selected date</li>
+<li><code>getSelectedSlot()</code> → return selected time</li>
+<li><code>addBooking(date,time)</code> → add booked slot</li>
+<li><code>clearSelection()</code> → clear selection</li>
+<li><code>destroy()</code> → destroy calendar instance</li>
+</ul>
+
+<pre>
+calendar.addBooking("2026-03-20","10:00");
+</pre>
+
+</div>
+
+<div class="card">
+<h2>Events (Callbacks)</h2>
+
+<p>You can listen to calendar events.</p>
+
+<pre>
+new BookingCalendar("#calendar",{
+
+onDateSelect:(data)=>{
+console.log("Date:",data.date)
+},
+
+onSlotSelect:(data)=>{
+console.log("Slot:",data.time)
+}
+
+})
+</pre>
+
+</div>
+
+<div class="card">
+<h2>Examples</h2>
+
+<h3>Dark Mode</h3>
+
+<pre>
+new BookingCalendar("#calendar",{
+theme:"dark"
+})
+</pre>
+
+<h3>Custom Color</h3>
+
+<pre>
+new BookingCalendar("#calendar",{
+primaryColor:"#22c55e"
+})
+</pre>
+
+<h3>Multiple Calendars</h3>
+
+<pre>
+new BookingCalendar("#calendar1");
+new BookingCalendar("#calendar2");
+</pre>
+
+</div>
+
+<div class="card">
+<h2>Support</h2>
+
+<p>If you need help using this plugin, please contact the developer.</p>
+
+</div>
+
+<div class="footer">
+Booking Calendar Plugin Documentation
+</div>
+
+</div>
+
+</body>
+</html>
