@@ -1,0 +1,317 @@
+:root {
+  /* Millie Brand Colors */
+  --millie-yellow: #FFEB00;
+  --millie-black: #242424;
+  --millie-gray: #757575;
+  --millie-bg-light: #F7F7F7;
+  --bc-primary: var(--millie-yellow);
+}
+
+.bc-theme-light {
+  --bc-bg: #ffffff;
+  --bc-text: #242424;
+  --bc-border: #eeeeee;
+  --bc-hover: #f3f3f3;
+  --bc-slot-bg: #ffffff;
+  --bc-disabled: #f9f9f9;
+  --bc-muted: #999;
+  --bc-modal-bg: #ffffff;
+}
+
+.bc-theme-dark {
+  --bc-bg: #1a1a1a;
+  --bc-text: #f5f5f5;
+  --bc-border: #333333;
+  --bc-hover: #2d2d2d;
+  --bc-slot-bg: #242424;
+  --bc-disabled: #2d2d2d;
+  --bc-muted: #777;
+  --
+  
+  body {
+    background-color: var(--millie-bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}bc-modal-bg: #242424;
+}
+
+.booking-calendar {
+  max-width: 400px; /* Sedikit lebih lebar agar lega */
+  width: 100%;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  margin: 20px auto;
+  background: var(--bc-bg);
+  color: var(--bc-text);
+  border: 1px solid var(--bc-border);
+  border-radius: 20px; /* Lebih rounded khas Millie */
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Header & Typography */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Memastikan judul dan tombol sejajar secara vertikal */
+    margin-bottom: 30px;
+}
+
+.calendar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Jarak antar elemen (Month, Moon, Nav) */
+}
+
+.month-title {
+  font-size: 20px;
+  font-weight: 800; /* Lebih bold */
+  letter-spacing: -0.5px;
+}
+
+.view-toggle, .theme-toggle {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bc-hover);
+    border: none;
+    border-radius: 10px;
+    padding: 0 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--bc-text);
+}
+
+.theme-toggle {
+    padding: 0;
+    width: 36px; /* Buat jadi kotak/lingkaran sempurna */
+    font-size: 16px;
+}
+
+/* Grid Calendar */
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bc-muted);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.calendar-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-date {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.calendar-date:hover:not(.empty) {
+  background: var(--bc-hover);
+}
+
+.calendar-date.selected {
+  background: var(--bc-primary) !important;
+  color: #000 !important; /* Millie style: Black text on yellow */
+  font-weight: 700;
+}
+
+.calendar-date.has-booking::after {
+    content: "";
+    position: absolute;
+    bottom: 6px; /* Jarak dari bawah */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background: var(--bc-primary);
+    border-radius: 50%;
+}
+
+/* Perbaikan Transisi yang bikin lambat */
+.calendar-date, .slot, .prev-btn, .next-btn, .book-btn {
+    transition: all 0.2s ease !important; /* Ubah dari 1.2s ke 0.2s */
+}
+
+/* Slots */
+.time-slots h3 {
+  font-size: 16px;
+  margin: 25px 0 15px;
+  font-weight: 700;
+}
+
+.slot.booked {
+    background: var(--bc-disabled) !important;
+    color: var(--bc-muted) !important;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: line-through;
+    border: 1px dashed var(--bc-border);
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.slot {
+  padding: 12px;
+  border: 1px solid var(--bc-border);
+  border-radius: 10px;
+  background: var(--bc-slot-bg);
+  color: var(--bc-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slot.selected {
+  background: var(--bc-primary);
+  border-color: var(--bc-primary);
+  color: #000;
+}
+
+.nav-btns {
+    display: flex;
+    background: var(--bc-hover);
+    padding: 2px;
+    border-radius: 10px;
+    gap: 2px;
+}
+
+/* Button Confirm */
+.book-btn {
+  margin-top: 25px;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  background: var(--bc-primary);
+  color: #000; /* Tulisan hitam di tombol kuning */
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Modal Styling - FIX DARK MODE */
+.booking-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px); /* Efek blur kaca yang mewah */
+    display: none; /* Dikontrol via JS */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.booking-modal.active {
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--bc-bg); /* Mengikuti tema */
+    color: var(--bc-text);
+    padding: 32px;
+    border-radius: 24px;
+    text-align: center;
+    width: 90%;
+    max-width: 340px;
+    border: 1px solid var(--bc-border);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.booking-modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.booking-info {
+    background: var(--bc-hover);
+    padding: 20px;
+    border-radius: 16px;
+    margin: 24px 0;
+    border: 1px solid var(--bc-border);
+}
+
+/* Modal Buttons - Eyecatching */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirm-booking {
+    background: var(--bc-primary); /* Kuning Millie */
+    color: #000;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.confirm-booking:active {
+    transform: scale(0.96);
+}
+
+.close-modal {
+    background: transparent;
+    border: none;
+    color: var(--bc-muted);
+    font-weight: 600;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Fix Animation Speed (Was 1.2s, now 0.2s) */
+.calendar-date, .slot, .prev-btn, .next-btn, .book-btn {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.prev-btn, .next-btn {
+    border: none;
+    background: transparent;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--bc-text);
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background: var(--bc-bg);
+    transform: scale(1.1); /* Menghilangkan transform scale yang sebelumnya mengganggu */
+}
