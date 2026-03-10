@@ -1,0 +1,28 @@
+Booking Calendar Plugin
+Version 1.0.0
+
+Copyright (c) 2026
+
+All rights reserved.
+
+This plugin is licensed for use by the purchaser only.
+
+You are allowed to:
+- Use this plugin in personal or commercial projects
+- Modify the plugin for your own projects
+
+You are NOT allowed to:
+- Resell this plugin
+- Redistribute the source code
+- Publish the plugin publicly without permission
+
+If you purchased this plugin through a marketplace, the marketplace
+license terms may apply.
+
+For extended licensing or commercial redistribution, please contact the author.
+
+--------------------------------------------------
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
