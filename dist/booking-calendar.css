@@ -311,3 +311,90 @@
   cursor:not-allowed;
   pointer-events:none;
 }
+
+/* Toast Container */
+.bc-toast-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px; /* Posisi di pojok kanan bawah */
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+/* Toast Body: Lebih Compact & Modern */
+.bc-toast {
+    min-width: 280px;
+    max-width: 350px;
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--bc-bg);
+    color: var(--bc-text);
+    border-radius: 16px;
+    border: 1px solid var(--bc-border);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    
+    /* Efek Glassmorphism (Opsional) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Animasi dari samping */
+    transform: translateX(120%); 
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: auto;
+}
+
+.bc-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Icon & Message */
+.toast-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px; /* Square rounded */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.bc-toast.type-success .toast-icon {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.bc-toast.type-error .toast-icon {
+    background: #FFEBEE;
+    color: #C62828;
+}
+
+.toast-message {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* Responsif untuk Mobile: Pindah ke Tengah Bawah */
+@media (max-width: 480px) {
+    .bc-toast-container {
+        right: 20px;
+        left: 20px;
+        bottom: 20px;
+    }
+    .bc-toast {
+        max-width: none;
+        width: 100%;
+        transform: translateY(150%);
+    }
+    .bc-toast.show {
+        transform: translateY(0);
+    }
+}

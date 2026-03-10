@@ -1,3 +1,11 @@
+/*!
+ * Booking Calendar JS
+ * Version: 1.0.0
+ * Author: Monang Bahana
+ * Description: Lightweight booking calendar with time slot selection.
+ * License: Commercial
+ */
+
 class BookingCalendar {
 
     constructor(element, options = {}) {
@@ -57,45 +65,49 @@ class BookingCalendar {
 
     renderLayout() {
         this.container.innerHTML = `
-        <div class="booking-calendar-wrapper">
-            <div class="calendar-header">
-                <h2 class="month-title"></h2>
-                <div class="calendar-actions">
-                    <button class="theme-toggle">🌙</button>
-                    <div class="nav-btns">
-                        <button class="prev-btn">‹</button>
-                        <button class="next-btn">›</button>
+            <div class="booking-calendar-wrapper">
+
+                <div class="bc-toast-container"></div>
+
+                <div class="calendar-header">
+                    <h2 class="month-title"></h2>
+                    <div class="calendar-actions">
+                        <button class="theme-toggle">🌙</button>
+                        <div class="nav-btns">
+                            <button class="prev-btn">‹</button>
+                            <button class="next-btn">›</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="calendar-days">
-                <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
-            </div>
+                <div class="calendar-days">
+                    <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+                </div>
 
-            <div class="calendar-dates"></div>
+                <div class="calendar-dates"></div>
 
-            <div class="time-slots">
-                <h3>Available Time</h3>
-                <div class="slots-grid"></div>
-            </div>
+                <div class="time-slots">
+                    <h3>Available Time</h3>
+                    <div class="slots-grid"></div>
+                </div>
 
-            <button class="book-btn">Book Appointment</button>
+                <button class="book-btn">Book Appointment</button>
 
-            <div class="booking-modal" style="display: none;">
-                <div class="modal-content">
-                    <h3>Confirm Booking</h3>
-                    <p>You are booking for:</p>
-                    <div class="booking-info"></div>
-                    <div class="modal-actions">
-                        <button class="confirm-booking">Confirm Booking</button>
-                        <button class="close-modal">Maybe Later</button>
+                <div class="booking-modal" style="display: none;">
+                    <div class="modal-content">
+                        <h3>Confirm Booking</h3>
+                        <p>You are booking for:</p>
+                        <div class="booking-info"></div>
+                        <div class="modal-actions">
+                            <button class="confirm-booking">Confirm Booking</button>
+                            <button class="close-modal">Maybe Later</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        `;
 
+            </div>
+            `;
+            
         // RE-ASSIGN SELECTORS (Penting: harus setelah innerHTML)
         this.datesContainer = this.container.querySelector(".calendar-dates");
         this.monthTitle = this.container.querySelector(".month-title");
@@ -109,6 +121,8 @@ class BookingCalendar {
         this.closeModal = this.container.querySelector(".close-modal");
         this.bookBtn = this.container.querySelector(".book-btn");
 
+        this.toastContainer = this.container.querySelector(".bc-toast-container");
+
         this.attachEvents();
     }
 
@@ -116,7 +130,7 @@ class BookingCalendar {
         // Tombol Utama
         this.bookBtn.onclick = () => {
             if (!this.selectedDate || !this.selectedSlot) {
-                alert("Please select date and time first");
+                this.showToast("Please select date and time first", "error");
                 return;
             }
             const dateStr = this.formatDate(this.selectedDate);
@@ -139,7 +153,7 @@ class BookingCalendar {
             this.addBooking(dateStr, this.selectedSlot);
             this.modal.classList.remove("active");
             setTimeout(() => this.modal.style.display = "none", 300);
-            alert("Booking Successful!");
+            this.showToast("Booking Successful! See you then.", "success");
         };
 
         // Navigasi & Theme
@@ -152,6 +166,32 @@ class BookingCalendar {
             this.renderCalendar();
         };
         this.themeToggle.onclick = () => this.toggleTheme();
+    }
+
+    showToast(message, type = "success") {
+        const toast = document.createElement("div");
+        toast.classList.add("bc-toast", `type-${type}`);
+        
+        // Icon SVG yang lebih modern
+        const icon = type === "success" 
+            ? `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+            : `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+        
+        toast.innerHTML = `
+            <div class="toast-icon">${icon}</div>
+            <div class="toast-message">${message}</div>
+        `;
+
+        this.toastContainer.appendChild(toast);
+
+        // Trigger animasi
+        requestAnimationFrame(() => toast.classList.add("show"));
+
+        // Auto remove
+        setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => toast.remove(), 500);
+        }, 3500);
     }
 
     formatDate(date) {
