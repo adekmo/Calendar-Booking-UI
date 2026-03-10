@@ -57,6 +57,20 @@
             flex-wrap:wrap;
         }
 
+        .hero-image {
+            width: 100%;
+            max-width: 800px; /* Ukuran optimal di landing page */
+            margin: 40px auto 0;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
         .btn{
             padding:14px 28px;
             border-radius:12px;
@@ -197,6 +211,8 @@
             <a href="#demo" class="btn btn-primary">Live Demo</a>
             <a href="documentation/index.html" class="btn btn-secondary">Documentation</a>
         </div>
+
+        <img src="preview/booking-calendar-cover.png" alt="Booking Calendar JS Preview" class="hero-image">
     </section>
 
     <!-- FEATURES -->
